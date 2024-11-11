@@ -1,0 +1,73 @@
+body {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 100px 0;
+}
+.title {
+    text-align: center;
+    font-size: 27px;
+    margin-bottom: 180px;
+}
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+.testimonial {
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.testimonial img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.testimonial p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+.testimonial strong {
+    font-size: 16px;
+    color: #333;
+}
+.logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #f1f1f1;
+    margin-top: 90px;
+}
+.logos div {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logos div img {
+    max-width: 100px;
+    max-height: 60px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+    .testimonial {
+        flex-direction: column;
+        text-align: center;
+    }
+}
