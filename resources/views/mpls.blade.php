@@ -3,38 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - SMA Negeri 1 Surakarta</title>
+    <title>SMA Negeri 1 Surakarta</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        .top-header {
-            background-color: #004d61;
-            color: white;
-            padding: 10px 0;
-        }
-        .navbar-brand img {
-            height: 50px;
-            margin-right: 10px;
-        }
-        .hero {
-            height: 870px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        .carousel{
-            width: 2500px;
-            height: 870px;
-        }
+        .top-header { background-color: #004d61; color: white; padding: 10px 0; }
+        .navbar-brand img { height: 50px; margin-right: 10px; }
+        .hero { height: 400px; background: url('school-image.jpg') center/cover no-repeat; }
+        .gallery img { width: 100%; border-radius: 5px; }
+        .contact-form input, .contact-form textarea { margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -74,38 +54,38 @@
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="hero">
-    <!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-    <!-- Indicators/dots -->
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+<section id="home" class="hero d-flex align-items-center justify-content-center text-white">
+    <div class="text-center p-5" style="background-color: rgba(0, 0, 0, 0.5); border-radius: 3px;">
+        <h1>Selamat Datang di SMA Negeri 1 Surakarta</h1>
     </div>
+</section>
 
-    <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="img/SMANSA.jpg" alt="Los Angeles" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="img/SMANSA2.jpg" alt="Chicago" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="img/SMANSA3.jpg" alt="New York" class="d-block w-100">
-      </div>
+<style>
+    .hero {
+        height: 870px;
+        background: url(https://www.sman1-slo.sch.id/upload/picture/98952326PELEPASAN3.jpg) center/cover no-repeat;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+</style>
+
+<!-- MPLS -->
+<section id="MPLS" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Masa Pengenalan Lingkungan Sekolah</h2>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <img src="https://i.imgur.com/xDybHUR.jpeg" alt="MPLS 1" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-3">
+                <img src="https://i.imgur.com/BH8HZVj.jpeg" alt="MPLS 2" class="img-fluid">
+            </div>
+            <a href="https://drive.google.com/file/d/1GUH0ghGtL8KnNwcTw9uHxY4AvIef2v-S/view">Informasi Tentang Masa Pengenalan Lingkungan Sekolah</a>
+        </div>
     </div>
-
-    <!-- Left and right controls/icons -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
 </section>
 
 <!-- Footer -->
@@ -115,6 +95,14 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Form Validation -->
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        alert('Terima kasih! Pesan Anda sudah terkirim.');
+    });
+</script>
 
 </body>
 </html>
