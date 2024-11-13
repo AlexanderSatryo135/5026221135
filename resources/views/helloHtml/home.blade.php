@@ -1,7 +1,6 @@
 <html>
 <head>
 <title>Beranda - Pemrograman Web</title>
-
 </head>
 <body bgcolor="pink" text="black">
 <h1>Selamat Datang</h1>
