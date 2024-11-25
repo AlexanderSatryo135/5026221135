@@ -80,7 +80,7 @@
         <div class="col-md-4 mb-4">
             <a href="{{ url('ourTestimoni') }}" class="text-decoration-none">
                 <div class="p-4 bg-danger text-white rounded">
-                    <h3>outTestimoni</h3>
+                    <h3>ourTestimoni</h3>
                 </div>
             </a>
         </div>
