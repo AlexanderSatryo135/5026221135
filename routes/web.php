@@ -66,3 +66,22 @@ Route::post('/pegawai/update', [PegawaiController::class, 'update']);
 Route::get('/pegawai/hapus/{id}', [PegawaiController::class, 'hapus']);
 
 Route::get('/pegawai/cari', [PegawaiController::class, 'cari']);
+
+Route::get('/input', [MalasngodingController::class, 'input']);
+
+Route::post('/proses', [MalasngodingController::class, 'proses']);
+
+Route::get('/kertashvs', [KertashvsController::class, 'index']);
+
+Route::get('/kertashvs/tambah', [KertashvsController::class, 'tambah']);
+
+Route::post('/kertashvs/store', [KertashvsController::class, 'store']);
+
+Route::get('/kertashvs/edit/{id}', [KertashvsController::class, 'edit']);
+
+Route::post('/kertashvs/update/{id}', [KertashvsController::class, 'update']);
+
+Route::get('/kertashvs/hapus/{id}', [KertashvsController::class, 'hapus']);
+
+Route::get('/kertashvs/cari', [KertashvsController::class, 'cari']);
+
