@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\KertashvsController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,17 +73,5 @@ Route::get('/input', [MalasngodingController::class, 'input']);
 
 Route::post('/proses', [MalasngodingController::class, 'proses']);
 
-Route::get('/kertashvs', [KertashvsController::class, 'index']);
-
-Route::get('/kertashvs/tambah', [KertashvsController::class, 'tambah']);
-
-Route::post('/kertashvs/store', [KertashvsController::class, 'store']);
-
-Route::get('/kertashvs/edit/{id}', [KertashvsController::class, 'edit']);
-
-Route::post('/kertashvs/update/{id}', [KertashvsController::class, 'update']);
-
-Route::get('/kertashvs/hapus/{id}', [KertashvsController::class, 'hapus']);
-
-Route::get('/kertashvs/cari', [KertashvsController::class, 'cari']);
+Route::resource('/kertashvs', KertashvsController::class);
 

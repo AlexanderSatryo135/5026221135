@@ -1,59 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Data Kertas HVS</title>
-	<link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
-</head>
-<body>
+@extends('layouts.layout')
 
-	<div class="container">
-		<div class="card">
-			<div class="card-body">
-				<h2 class="text-center">Data Kertas HVS</h2>
+@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-body">
 
-				<h3>Daftar Kertas HVS</h3>
+            <h2 class="text-center">Data Kertas HVS</h2>
 
-				<p>Cari Data Kertas HVS:</p>
+            <!-- Form Pencarian -->
+            <form action="{{ route('kertashvs.index') }}" method="GET" class="form-inline mb-3">
+                <input class="form-control" type="text" name="cari" placeholder="Cari Kertas HVS .." value="{{ request('cari') }}">
+                <button class="btn btn-primary ml-2" type="submit">Cari</button>
+            </form>
 
-				<div class="form-group">
-				</div>
-				<form action="/kertashvs/cari" method="GET" class="form-inline">
-					<input class="form-control" type="text" name="cari" placeholder="Cari Merk Kertas HVS .." value="{{ old('cari') }}">
-					<input class="btn btn-primary ml-3" type="submit" value="CARI">
-				</form>
+            <!-- Tombol Tambah Data -->
+            <a href="{{ route('kertashvs.create') }}" class="btn btn-success mb-3">Tambah Data</a>
 
-				<br/>
+            <!-- Tabel Data -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Merk</th>
+                        <th>Stok</th>
+                        <th>Tersedia</th>
+                        <th>Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($kertashvs as $k)
+                    <tr>
+                        <td>{{ $k->merk_kertashvs }}</td>
+                        <td>{{ $k->stock_kertashvs }}</td>
+                        <td>{{ $k->tersedia == 'Y' ? 'Ya' : 'Tidak' }}</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{{ route('kertashvs.edit', $k->kode_kertashvs) }}">Edit</a>
+                            <form action="{{ route('kertashvs.destroy', $k->kode_kertashvs) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-center">Data tidak ditemukan.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
 
-				<table class="table table-bordered">
-					<tr>
-						<th>Merk</th>
-						<th>Stok</th>
-						<th>Tersedia</th>
-						<th>Opsi</th>
-					</tr>
-					@foreach($kertashvs as $k)
-					<tr>
-						<td>{{ $k->merk_kertashvs }}</td>
-						<td>{{ $k->stock_kertashvs }}</td>
-						<td>{{ $k->tersedia == 'Y' ? 'Ya' : 'Tidak' }}</td>
-						<td>
-							<a class="btn btn-warning btn-sm" href="/kertashvs/edit/{{ $k->kode_kertashvs }}">Edit</a>
-							<a class="btn btn-danger btn-sm" href="/kertashvs/hapus/{{ $k->kode_kertashvs }}">Hapus</a>
-						</td>
-					</tr>
-					@endforeach
-				</table>
+            <!-- Pagination -->
+            <div class="mt-3">
+                {{ $kertashvs->links() }}
+            </div>
 
-				<br/>
-				Halaman : {{ $kertashvs->currentPage() }} <br/>
-				Jumlah Data : {{ $kertashvs->total() }} <br/>
-				Data Per Halaman : {{ $kertashvs->perPage() }} <br/>
-				<br/>
+            <!-- Info Pagination -->
+            <div class="mt-2">
+                Halaman: {{ $kertashvs->currentPage() }} <br>
+                Jumlah Data: {{ $kertashvs->total() }} <br>
+                Data Per Halaman: {{ $kertashvs->perPage() }}
+            </div>
 
-				{{ $kertashvs->links() }}
-			</div>
-		</div>
-	</div>
-
-</body>
-</html>
+        </div>
+    </div>
+</div>
+@endsection

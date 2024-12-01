@@ -2,81 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kertashvs;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class KertashvsController extends Controller
 {
     public function index()
     {
-        // Mengambil data dari tabel kertashvs dengan pagination 10
-        $kertashvs = DB::table('kertashvs')->paginate(10);
-
-        // Mengirim data ke view index
-        return view('kertashvs.index', ['kertashvs' => $kertashvs]);
+        $kertashvs = Kertashvs::paginate(10);
+        return view('kertashvs.index', compact('kertashvs'));
     }
 
-    public function tambah()
+    public function create()
     {
-        // Menampilkan form tambah data kertashvs
-        return view('kertashvs.tambah');
+        return view('kertashvs.create');
     }
 
     public function store(Request $request)
     {
-        // Menyimpan data baru ke tabel kertashvs
-        DB::table('kertashvs')->insert([
-            'merk_kertashvs' => $request->merk_kertashvs,
-            'stock_kertashvs' => $request->stock_kertashvs,
-            'tersedia' => $request->tersedia,
-        ]);
+        Kertashvs::create($request->validate([
+            'merk_kertashvs' => 'required|string|max:30',
+            'stock_kertashvs' => 'required|integer',
+            'tersedia' => 'required|in:Y,N'
+        ]));
 
-        // Alihkan halaman ke halaman index kertashvs
-        return redirect('/kertashvs');
+        return redirect()->route('kertashvs.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
-        // Mengambil data kertashvs berdasarkan id
-        $kertashvs = DB::table('kertashvs')->where('kode_kertashvs', $id)->get();
-
-        // Mengirim data ke view edit
-        return view('kertashvs.edit', ['kertashvs' => $kertashvs]);
+        $kertashvs = Kertashvs::findOrFail($id);
+        return view('kertashvs.edit', compact('kertashvs'));
     }
 
     public function update(Request $request, $id)
     {
-        // Update data kertashvs berdasarkan id
-        DB::table('kertashvs')->where('kode_kertashvs', $id)->update([
-            'merk_kertashvs' => $request->merk_kertashvs,
-            'stock_kertashvs' => $request->stock_kertashvs,
-            'tersedia' => $request->tersedia,
-        ]);
+        $kertashvs = Kertashvs::findOrFail($id);
+        $kertashvs->update($request->validate([
+            'merk_kertashvs' => 'required|string|max:30',
+            'stock_kertashvs' => 'required|integer',
+            'tersedia' => 'required|in:Y,N'
+        ]));
 
-        // Alihkan halaman ke halaman index kertashvs
-        return redirect('/kertashvs');
+        return redirect()->route('kertashvs.index')->with('success', 'Data berhasil diupdate!');
     }
 
-    public function hapus($id)
+    public function destroy($id)
     {
-        // Hapus data kertashvs berdasarkan id
-        DB::table('kertashvs')->where('kode_kertashvs', $id)->delete();
+        $kertashvs = Kertashvs::findOrFail($id);
+        $kertashvs->delete();
 
-        // Alihkan halaman ke halaman index kertashvs
-        return redirect('/kertashvs');
+        return redirect()->route('kertashvs.index')->with('success', 'Data berhasil dihapus!');
     }
 
     public function cari(Request $request)
     {
-        // Menangkap data pencarian
         $cari = $request->cari;
+        $kertashvs = Kertashvs::where('merk_kertashvs', 'like', "%$cari%")->paginate(10);
 
-        // Mengambil data sesuai pencarian
-        $kertashvs = DB::table('kertashvs')
-            ->where('merk_kertashvs', 'like', "%" . $cari . "%")
-            ->paginate();
-
-        // Mengirim data ke view index
-        return view('kertashvs.index', ['kertashvs' => $kertashvs]);
+        return view('kertashvs.index', compact('kertashvs'));
     }
 }
