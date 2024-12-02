@@ -5,6 +5,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<!-- Navbar -->
+<nav>
+    <div class="d-flex justify-content-center mt-3">
+        @if (!request()->is(['pegawai/edit*', 'pegawai/tambah*', 'kertashvs/edit*', 'kertashvs/create*']))
+            <a href="/pegawai"
+                class="btn {{ request()->is('pegawai*') ? 'btn-primary' : 'btn-secondary' }} me-2">
+                Data Pegawai
+            </a>
+            <a href="/"
+                class="btn {{ request()->is('welcome*') ? 'btn-primary' : 'btn-secondary' }} me-2">
+                Dashboard
+            </a>
+            <a href="/kertashvs"
+                class="btn {{ request()->is('kertashvs*') ? 'btn-primary' : 'btn-secondary' }}">
+                Data Kertas HVS
+            </a>
+        @endif
+    </div>
+</nav>
 
 	<div class="container">
 		<div class="card">

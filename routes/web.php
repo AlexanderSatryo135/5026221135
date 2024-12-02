@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KertashvsController;
+use App\Http\Controllers\PageCounterController;
 
 
 Route::get('/', function () {
@@ -75,3 +76,4 @@ Route::post('/proses', [MalasngodingController::class, 'proses']);
 
 Route::resource('/kertashvs', KertashvsController::class);
 
+Route::get('/pagecounter', [PageCounterController::class, 'index']);
