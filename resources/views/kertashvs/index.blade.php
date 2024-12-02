@@ -9,8 +9,19 @@
 
             <!-- Form Pencarian -->
             <form action="{{ route('kertashvs.index') }}" method="GET" class="form-inline mb-3">
-                <input class="form-control" type="text" name="cari" placeholder="Cari Kertas HVS .." value="{{ request('cari') }}">
-                <button class="btn btn-primary ml-2" type="submit">Cari</button>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input
+                            type="text"
+                            name="cari"
+                            class="form-control w-100"
+                            placeholder="Cari Kertas HVS .."
+                            value="{{ request('cari') }}">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary w-100">Cari</button>
+                    </div>
+                </div>
             </form>
 
             <!-- Tombol Tambah Data -->
@@ -28,37 +39,42 @@
                 </thead>
                 <tbody>
                     @forelse($kertashvs as $k)
-                    <tr>
-                        <td>{{ $k->merk_kertashvs }}</td>
-                        <td>{{ $k->stock_kertashvs }}</td>
-                        <td>{{ $k->tersedia == 'Y' ? 'Ya' : 'Tidak' }}</td>
-                        <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('kertashvs.edit', $k->kode_kertashvs) }}">Edit</a>
-                            <form action="{{ route('kertashvs.destroy', $k->kode_kertashvs) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $k->merk_kertashvs }}</td>
+                            <td>{{ $k->stock_kertashvs }}</td>
+                            <td>{{ $k->tersedia == 'Y' ? 'Ya' : 'Tidak' }}</td>
+                            <td>
+                                <a href="{{ route('kertashvs.edit', $k->kode_kertashvs) }}" class="btn btn-info">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                |
+                                <form action="{{ route('kertashvs.destroy', $k->kode_kertashvs) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" onclick="return confirm('Hapus data?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     @empty
-                    <tr>
-                        <td colspan="4" class="text-center">Data tidak ditemukan.</td>
-                    </tr>
+                        <tr>
+                            <td colspan="4" class="text-center">Data tidak ditemukan.</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
 
             <!-- Pagination -->
             <div class="mt-3">
-                {{ $kertashvs->links() }}
+                {{ $kertashvs->links('pagination::bootstrap-4') }}
             </div>
 
             <!-- Info Pagination -->
             <div class="mt-2">
-                Halaman: {{ $kertashvs->currentPage() }} <br>
-                Jumlah Data: {{ $kertashvs->total() }} <br>
-                Data Per Halaman: {{ $kertashvs->perPage() }}
+                <p>Halaman: {{ $kertashvs->currentPage() }}</p>
+                <p>Jumlah Data: {{ $kertashvs->total() }}</p>
+                <p>Data Per Halaman: {{ $kertashvs->perPage() }}</p>
             </div>
 
         </div>

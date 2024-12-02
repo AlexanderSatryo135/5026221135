@@ -13,12 +13,10 @@
             <label for="stock_kertashvs">Stok</label>
             <input type="number" name="stock_kertashvs" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="tersedia">Tersedia</label>
-            <select name="tersedia" class="form-control" required>
-                <option value="Y">Ya</option>
-                <option value="N">Tidak</option>
-            </select>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="tersedia" name="tersedia" value="Y"
+                {{ (isset($kertashvs) && $kertashvs->tersedia == 'Y') ? 'checked' : '' }}>
+            <label class="form-check-label" for="tersedia">Tersedia</label>
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
