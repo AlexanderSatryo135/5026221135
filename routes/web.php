@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KertashvsController;
 use App\Http\Controllers\PageCounterController;
+use App\Http\Controllers\KaryawanController;
 
 
 Route::get('/', function () {
@@ -77,3 +78,11 @@ Route::post('/proses', [MalasngodingController::class, 'proses']);
 Route::resource('/kertashvs', KertashvsController::class);
 
 Route::get('/pagecounter', [PageCounterController::class, 'index']);
+
+Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
+
+Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
+
+Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+
+Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
